@@ -2,6 +2,7 @@ boto3
 dagit
 dagster
 dagster_aws
+dagster_cloud
 dagstermill
 matplotlib
 pandas
