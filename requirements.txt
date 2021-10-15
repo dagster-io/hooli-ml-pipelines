@@ -1,0 +1,10 @@
+boto3
+dagit
+dagster
+dagster_aws
+dagstermill
+matplotlib
+pandas
+pyspark
+sklearn
+snowflake-sqlalchemy
