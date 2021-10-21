@@ -30,7 +30,9 @@ def build_comment_stories(stories: DataFrame, comments: DataFrame) -> DataFrame:
     - story_id (int)
     - commenter_id (str)
     """
-    comments.rename(columns={"by": "commenter_id", "id": "comment_id"}, inplace=True)
+    comments.rename(
+        columns={"USER_ID": "commenter_id", "ID": "comment_id"}, inplace=True
+    )
     comments = comments.set_index("comment_id")[["commenter_id", "parent"]]
     stories = stories.set_index("id")[[]]
 
