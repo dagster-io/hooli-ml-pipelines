@@ -1,0 +1,1 @@
+from .hn_tables_updated import hn_tables_updated_sensor
