@@ -32,7 +32,6 @@ def build_comment_stories(
     - story_id (int)
     - commenter_id (str)
     """
-    context.log.info(comments.head())
     comments.rename(
         columns={"user_id": "commenter_id", "id": "comment_id"}, inplace=True
     )
@@ -51,6 +50,7 @@ def build_comment_stories(
     depth = 0
     while remaining_comments.shape[0] > 0 and depth < max_depth:
         depth += 1
+        context.log.info(f"depth {depth} remaining comments {remaining_comments.shape}")
         # join comments with stories and remove all comments that match a story
         comment_stories = remaining_comments.merge(
             stories, left_on="parent", right_index=True
