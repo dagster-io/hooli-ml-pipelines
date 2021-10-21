@@ -32,6 +32,7 @@ def build_comment_stories(
     - story_id (int)
     - commenter_id (str)
     """
+    context.log.info(comments.head())
     comments.rename(
         columns={"USER_ID": "commenter_id", "ID": "comment_id"}, inplace=True
     )
