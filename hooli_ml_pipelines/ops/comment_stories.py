@@ -6,13 +6,13 @@ from pandas import DataFrame, Series
     ins={
         "stories": In(
             root_manager_key="warehouse_loader",
-            metadata={"table": "hackernews.stories", "columns": ["id"]},
+            metadata={"table": "hackernews.stories", "columns": ["ID"]},
         ),
         "comments": In(
             root_manager_key="warehouse_loader",
             metadata={
                 "table": "hackernews.comments",
-                "columns": ["id", "by", "parent"],
+                "columns": ["ID", "USER_ID", "PARENT"],
             },
         ),
     },
