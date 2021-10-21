@@ -21,7 +21,9 @@ from pandas import DataFrame, Series
         metadata={"table": "hackernews.comment_stories"},
     ),
 )
-def build_comment_stories(stories: DataFrame, comments: DataFrame) -> DataFrame:
+def build_comment_stories(
+    context, stories: DataFrame, comments: DataFrame
+) -> DataFrame:
     """
     Traverses the comment tree to link each comment to its root story.
 
@@ -33,6 +35,8 @@ def build_comment_stories(stories: DataFrame, comments: DataFrame) -> DataFrame:
     comments.rename(
         columns={"USER_ID": "commenter_id", "ID": "comment_id"}, inplace=True
     )
+
+    context.log.info(comments.head())
     comments = comments.set_index("comment_id")[["commenter_id", "parent"]]
     stories = stories.set_index("id")[[]]
 
