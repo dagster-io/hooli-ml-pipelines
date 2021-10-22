@@ -14,8 +14,10 @@ def build_recommender_model(context, user_story_matrix: IndexedCooMatrix):
     """
     Trains an SVD model for collaborative filtering-based recommendation.
     """
-    context.log.info(f"Got {user_story_matrix.row_index.size} features")
-    n_components = random.randint(90, 110)
+    n_components = random.randint(
+        int(user_story_matrix.col_index.size / 4),
+        int(user_story_matrix.col_index.size / 2),
+    )
     svd = TruncatedSVD(n_components=n_components)
     svd.fit(user_story_matrix.matrix)
 
@@ -46,7 +48,7 @@ model_perf_notebook = define_dagstermill_solid(
             root_manager_key="warehouse_loader",
             metadata={
                 "table": "hackernews.stories",
-                "columns": ["id", "title"],
+                "columns": ["ID", "TITLE"],
             },
         ),
     },
