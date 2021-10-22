@@ -10,10 +10,11 @@ from .user_story_matrix import IndexedCooMatrix
 
 
 @op(out=Out(dagster_type=TruncatedSVD, metadata={"key": "recommender_model"}))
-def build_recommender_model(user_story_matrix: IndexedCooMatrix):
+def build_recommender_model(context, user_story_matrix: IndexedCooMatrix):
     """
     Trains an SVD model for collaborative filtering-based recommendation.
     """
+    context.log.info(f"Got {user_story_matrix.row_index.size} features")
     n_components = random.randint(90, 110)
     svd = TruncatedSVD(n_components=n_components)
     svd.fit(user_story_matrix.matrix)
