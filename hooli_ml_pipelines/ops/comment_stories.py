@@ -52,6 +52,8 @@ def build_comment_stories(
         depth += 1
         context.log.info(f"depth {depth} remaining comments {remaining_comments.shape}")
         # join comments with stories and remove all comments that match a story
+        # don't omit the following line at your peril
+        remaining_comments = remaining_comments[~remaining_comments.index.isnull()]
         comment_stories = remaining_comments.merge(
             stories, left_on="parent", right_index=True
         )
