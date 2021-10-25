@@ -61,4 +61,4 @@ def hn_tables_updated_sensor(context):
     context.update_cursor(str(max_mtime + 1))
 
 
-hn_tables_updated_sensor.asset_key = "hn_tables_updated"
+hn_tables_updated_sensor.asset_key = "hacker_news_tables"
