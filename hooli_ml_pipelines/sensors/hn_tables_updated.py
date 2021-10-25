@@ -54,6 +54,11 @@ def hn_tables_updated_sensor(context):
     yield RunRequest(run_key=None)
 
     for materialization in materializations:
-        max_mtime = max(max_mtime, int(materialization["materializationEvent"]["timestamp"]))
+        max_mtime = max(
+            max_mtime, int(materialization["materializationEvent"]["timestamp"])
+        )
 
     context.update_cursor(str(max_mtime + 1))
+
+
+hn_tables_updated_sensor.asset_key = "hn_tables_updated"
