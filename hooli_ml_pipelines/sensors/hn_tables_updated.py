@@ -1,6 +1,6 @@
 import os
 
-from dagster import RunRequest, SkipReason, sensor
+from dagster import AssetKey, RunRequest, SkipReason, sensor
 from gql import Client, gql
 from gql.transport.requests import RequestsHTTPTransport
 
@@ -42,7 +42,7 @@ def hn_tables_updated_sensor(context):
     materializations = gql_client.execute(
         QUERY,
         variable_values={
-            "assetKey": {"path": ["hn_tables_updated"]},
+            "assetKey": {"path": ["hacker_news_tables"]},
             "afterTimestamp": str(last_mtime),
         },
     )["assetOrError"].get("assetMaterializations", [])
@@ -61,4 +61,4 @@ def hn_tables_updated_sensor(context):
     context.update_cursor(str(max_mtime + 1))
 
 
-hn_tables_updated_sensor.asset_key = "hacker_news_tables"
+hn_tables_updated_sensor.asset_key = AssetKey("hacker_news_tables")
