@@ -2,7 +2,7 @@ boto3
 git+https://github.com/dagster-io/dagster.git@9354a029d36a3cc79e58e3a3a3e79f5e5c1acde2#subdirectory=python_modules/dagster
 git+https://github.com/dagster-io/dagster.git@9354a029d36a3cc79e58e3a3a3e79f5e5c1acde2#subdirectory=python_modules/dagit
 git+https://github.com/dagster-io/dagster.git@9354a029d36a3cc79e58e3a3a3e79f5e5c1acde2#subdirectory=python_modules/libraries/dagster-aws/
-git+https://github.com/dagster-io/dagster-cloud.git@f63e19ed1b2de7fc9e220db068ac276537722941
+git+https://github.com/dagster-io/dagster-cloud.git@a63ce6fcb3ecb7259fcde250b632970f3ee466dd
 git+https://github.com/dagster-io/dagster.git@9354a029d36a3cc79e58e3a3a3e79f5e5c1acde2#subdirectory=python_modules/libraries/dagster-dbt/
 matplotlib
 pandas
