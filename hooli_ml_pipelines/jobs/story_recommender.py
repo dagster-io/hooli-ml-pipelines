@@ -18,6 +18,7 @@ from ..resources.snowflake_io_manager import snowflake_io_manager
 
 import os
 
+# Hack since the snowflake password env var is being wrapped in single quotes
 os.environ["SNOWFLAKE_PASSWORD"] = os.getenv("SNOWFLAKE_PASSWORD", "").strip("'")
 
 snowflake_manager = snowflake_io_manager.configured(
