@@ -16,6 +16,10 @@ from ..resources.fixed_s3_pickle_io_manager import fixed_s3_pickle_io_manager
 from ..resources.s3_notebook_io_manager import s3_notebook_io_manager
 from ..resources.snowflake_io_manager import snowflake_io_manager
 
+import os
+
+os.environ["SNOWFLAKE_PASSWORD"] = os.getenv("SNOWFLAKE_PASSWORD", "").strip("'")
+
 snowflake_manager = snowflake_io_manager.configured(
     {
         "account": {"env": "SNOWFLAKE_ACCOUNT"},
