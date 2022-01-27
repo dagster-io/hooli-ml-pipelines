@@ -7,7 +7,7 @@ from gql.transport.requests import RequestsHTTPTransport
 from ..jobs import story_recommender_prod_job
 
 DAGIT_URL = "https://hooli.dagster.cloud/data-eng-prod/graphql"
-HEADERS = {"Dagster-Cloud-Api-Token": os.getenv("CROSS_DEPLOYMENT_API_TOKEN")}
+HEADERS = {"Dagster-Cloud-Api-Token": os.getenv("CROSS_DEPLOYMENT_API_TOKEN", os.getenv("DAGSTER_CLOUD_AGENT_TOKEN"))}
 TRANSPORT = RequestsHTTPTransport(url=DAGIT_URL, headers=HEADERS, use_json=True)
 
 gql_client = Client(transport=TRANSPORT)
