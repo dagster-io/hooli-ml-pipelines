@@ -1,6 +1,6 @@
 import random
 
-from dagster import EventMetadata, In, InputDefinition, Out, Output, op
+from dagster import EventMetadata, Field, In, InputDefinition, Out, Output, op
 from dagster.utils import file_relative_path
 from dagstermill import define_dagstermill_solid
 from pandas import DataFrame, Series
@@ -9,7 +9,10 @@ from sklearn.decomposition import TruncatedSVD
 from .user_story_matrix import IndexedCooMatrix
 
 
-@op(out=Out(dagster_type=TruncatedSVD, metadata={"key": "recommender_model"}))
+@op(
+    config_schema={"algorithm": Field(str, is_required=False)},
+    out=Out(dagster_type=TruncatedSVD, metadata={"key": "recommender_model"}),
+)
 def build_recommender_model(context, user_story_matrix: IndexedCooMatrix):
     """
     Trains an SVD model for collaborative filtering-based recommendation.
@@ -18,7 +21,10 @@ def build_recommender_model(context, user_story_matrix: IndexedCooMatrix):
         int(user_story_matrix.col_index.size / 4),
         int(user_story_matrix.col_index.size / 2),
     )
-    svd = TruncatedSVD(n_components=n_components)
+    svd = TruncatedSVD(
+        n_components=n_components,
+        algorithm=context.solid_config["algorithm"],
+    )
     svd.fit(user_story_matrix.matrix)
 
     total_explained_variance = svd.explained_variance_ratio_.sum()
