@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y git
 
 ADD requirements.txt requirements.txt
 
-RUN pip install pip<21
+RUN pip install "pip<21"
 RUN pip install -r requirements.txt
 
 ADD . .
