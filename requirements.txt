@@ -5,7 +5,7 @@ dagster-aws
 dagster-cloud
 dagster-dbt
 matplotlib
-pandas
+pandas<1.4.0
 pyspark
 sklearn
 snowflake-sqlalchemy
