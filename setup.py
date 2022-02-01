@@ -20,7 +20,7 @@ if __name__ == "__main__":
             "dagster_cloud",
             "dagstermill",
             "matplotlib",
-            "pandas",
+            "pandas<1.4.0",
             "pyspark",
             "sklearn",
             "snowflake-sqlalchemy",
