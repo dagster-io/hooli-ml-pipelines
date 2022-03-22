@@ -27,9 +27,7 @@ def build_user_story_matrix(comment_stories: DataFrame) -> IndexedCooMatrix:
     Builds a sparse matrix where the rows are users, the columns are stories, and the values
     are whether the user commented on the story.
     """
-    deduplicated = (
-        comment_stories[["story_id", "commenter_id"]].drop_duplicates().dropna()
-    )
+    deduplicated = comment_stories[["story_id", "commenter_id"]].drop_duplicates().dropna()
 
     users = deduplicated["commenter_id"].drop_duplicates()
     user_row_indices = Series(index=users, data=list(range(len(users))))
@@ -37,7 +35,7 @@ def build_user_story_matrix(comment_stories: DataFrame) -> IndexedCooMatrix:
     story_col_indices = Series(index=stories, data=list(range(len(stories))))
 
     sparse_rows = user_row_indices[deduplicated["commenter_id"]]
-    sparse_cols = story_col_indices[deduplicated["story_ids"]]
+    sparse_cols = story_col_indices[deduplicated["story_id"]]
     sparse_data = np.ones(len(sparse_rows))
 
     return IndexedCooMatrix(
